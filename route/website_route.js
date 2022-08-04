@@ -15,9 +15,18 @@ router.post('/website', async (req, res) => {
     let intentData = await DIALOGFLOW_API.detectIntent('en', query, sessionId);
 
     if (intentData.status == 1) {
-        let fulfillmentText = JSON.parse(intentData.fulfillmentText);
-        fulfillmentText['status'] = 1;
-        res.send(fulfillmentText);
+        try {
+            let fulfillmentText = JSON.parse(intentData.fulfillmentText);
+            fulfillmentText['status'] = 1;
+            res.send(fulfillmentText);
+        } catch (error) {
+            let fulfillmentText = {
+                'messages': [intentData.fulfillmentText],
+                'buttons': [],
+                'status': 1
+            };
+            res.send(fulfillmentText);
+        }
     } else {
         let fulfillmentText = {};
         fulfillmentText['status'] = 0;
