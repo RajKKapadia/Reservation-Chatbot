@@ -6,6 +6,7 @@ const UTIL = require('../controller/util');
 
 router.post('/website', async (req, res) => {
 
+    console.log('A new request came at website.');
     console.log(req.body);
 
     let query = req.body.query;

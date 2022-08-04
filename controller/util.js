@@ -39,11 +39,11 @@ const handleDatetimefromDialogflow = (dateTime) => {
     let hours = dateTime.split('T')[1].split(':')[0];
     let minutes = dateTime.split('T')[1].split(':')[1];
 
-    date = new Date(year, month, day, hours, minutes);
+    date = new Date(year, month - 1, day, hours, minutes);
 
-    let dateToString = date.toDateString({  year: 'numeric', month: 'long', timeZone: 'ist' });
+    let dateToString = date.toDateString('in', { year: 'numeric', month: 'long', timeZone: 'ist' });
 
-    let timeToString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'ist' });
+    let timeToString = date.toLocaleTimeString('in', { hour: '2-digit', minute: '2-digit', hour12: true });
 
     let dateTimeToString = `${dateToString} at ${timeToString}`;
 

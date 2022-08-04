@@ -8,7 +8,7 @@ webApp.use(express.urlencoded({
 }));
 webApp.use(express.json());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const homeRoute = require('../route/home_route');
 const dialogflowRoute = require('../route/dialogflow_route');

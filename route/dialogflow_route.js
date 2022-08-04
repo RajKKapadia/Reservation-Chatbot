@@ -7,6 +7,9 @@ router.post('/dialogflow', async (req, res) => {
 
     let action = req.body.queryResult.action;
 
+    console.log('A new request came.');
+    console.log(`Action name - ${action}`);
+
     if (action === 'handleUserInfo') {
         let responseData = CONTROLLERS.handleReservation.manageUserInfo(req);
         res.send(responseData);
@@ -16,8 +19,7 @@ router.post('/dialogflow', async (req, res) => {
     } else if (action === 'handleUserDeniesChanges') {
         let responseData = CONTROLLERS.handleReservation.userDeniesChanges(req);
         res.send(responseData);
-    }
-    else {
+    } else {
         let responseData = CONTROLLERS.util.formatResponseForDialogflow(
             [
                 `There is no response set for the action ${action}`
@@ -27,7 +29,6 @@ router.post('/dialogflow', async (req, res) => {
         );
         res.send(responseData)
     }
-
 });
 
 module.exports = {
