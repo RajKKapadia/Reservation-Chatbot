@@ -1,10 +1,11 @@
 const express = require('express');
+const cors = require('cors')
 const router = express.Router();
 
 const DIALOGFLOW_API = require('../helper/dialogflow_api');
 const UTIL = require('../controller/util');
 
-router.post('/website', async (req, res) => {
+router.post('/website', cors(), async (req, res) => {
 
     console.log('A new request came at website.');
     console.log(req.body);
