@@ -2,11 +2,13 @@ const express = require('express');
 require('dotenv').config();
 
 const webApp = express();
+const cors = require('cors')
 
 webApp.use(express.urlencoded({
     extended: true
 }));
 webApp.use(express.json());
+webApp.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
